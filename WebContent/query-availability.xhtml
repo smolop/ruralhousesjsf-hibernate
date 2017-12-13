@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+	<h:head>
+		<title>RuralHousesJSF-Hibernate</title>
+	</h:head>
+	<h:body>
+		<h3 align="center"><p:outputLabel>Query</p:outputLabel></h3>
+		<h:form>
+			<table align="center">
+				<tr>
+					<td><p:outputLabel>Rural house:</p:outputLabel></td>
+					<td><p:selectOneMenu
+							value="#{queryAvailabilityBean.ruralHouse}" converter="omnifaces.SelectItemsConverter">
+							<f:selectItems value="#{queryAvailabilityBean.ruralHouses}"></f:selectItems>
+						</p:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><p:outputLabel>First day:</p:outputLabel></td>
+					<td><p:outputLabel for="popup" value="" /> <p:calendar
+							id="popup" value="#{queryAvailabilityBean.firstDay}" /></td>
+				</tr>
+				<tr>
+					<td><p:outputLabel>Number of nights:</p:outputLabel></td>
+					<td><p:inputNumber value="#{queryAvailabilityBean.numberOfNights}"  decimalPlaces="0"/></td>
+				</tr>
+				<tr>
+					<td><p:dataTable id="offersDataTable" var="offer" value="#{queryAvailabilityBean.offers}">
+							<p:column headerText="Offer#">
+								<h:outputText value="#{offer.offerNumber}" />
+							</p:column>
+
+							<p:column headerText="Rural House">
+								<h:outputText value="#{offer.ruralHouse}" />
+							</p:column>
+
+							<p:column headerText="First Day">
+								<h:outputText value="#{offer.firstDay}" >
+									<f:convertDateTime pattern="dd.MM.yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Last day">
+								<h:outputText value="#{offer.lastDay}" >
+									<f:convertDateTime pattern="dd-MM-yyyy" />
+								</h:outputText>
+							</p:column>
+							
+							<p:column headerText="Price">
+								<h:outputText value="#{offer.price}" />
+							</p:column>
+						</p:dataTable></td>
+				</tr>
+				<tr>
+					<td>
+						<p:commandButton action="#{queryAvailabilityBean.queryAvailability}" value="Aceptar"
+							style="width: 128px; margin-left: 180; " align="center" update="offersDataTable" />
+						<p:commandButton
+							action="#{queryAvailabilityBean.main}" value="Cerrar"
+							style="width: 128px; margin-left: 20; " align="center" />
+					</td>
+				</tr>
+			</table>
+			<h:messages></h:messages>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

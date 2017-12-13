@@ -1,0 +1,37 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-11-17 18:13:48 #1 store] 
+Database '/Users/crivasgomez/git/ruralhousesjsf/resources\ruralHouses.odb' is opened by 38546@Cristians-MacBook-Pro.local
+
+[2017-11-17 18:13:48 #2 type.registry] 
+New type domain.RuralHouse
+
+[2017-11-17 18:13:48 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-11-17 18:13:48 #4 type.registry] 
+New type domain.Offer
+
+[2017-11-17 18:13:48 #5 type.registry] 
+New type java.util.Vector<domain.Offer>
+
+[2017-11-17 18:13:48 #6 type] 
+Type domain.Offer is not enhanced.
+
+[2017-11-17 18:13:48 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-11-17 18:30:27 #1 store] 
+Database '/Users/crivasgomez/git/ruralhousesjsf/resources\ruralHouses.odb' has been recovered (tr. 1-5)
+
+[2017-11-17 18:30:27 #2 store] 
+Database '/Users/crivasgomez/git/ruralhousesjsf/resources\ruralHouses.odb' is opened by 39048@Cristians-MacBook-Pro.local
+
+[2017-11-17 18:30:27 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-11-17 18:30:27 #4 type] 
+Type domain.Offer is not enhanced.
+

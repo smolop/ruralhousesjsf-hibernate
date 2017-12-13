@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>RuralHousesJSF-Hibernate</title>
+	</h:head>
+	<h:body>
+		<h3 align="center">
+			<p:outputLabel>Set</p:outputLabel>
+		</h3>
+		<h:form>
+			<table align="center">
+				<tr>
+					<td><p:outputLabel>List of House:</p:outputLabel> <p:selectOneMenu
+							value="#{setAvailabilityBean.ruralHouse}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItems value="#{setAvailabilityBean.ruralHouses}"></f:selectItems>
+						</p:selectOneMenu></td>
+					<td><p:outputLabel>Price:</p:outputLabel> <p:inputNumber
+							id="price" value="#{setAvailabilityBean.price}">
+						</p:inputNumber></td>
+				</tr>
+				<tr>
+					<td><p:outputLabel for="firstDayCalendar" value="First day:" />
+						<p:calendar id="firstDayCalendar"
+							value="#{setAvailabilityBean.firstDay}" /></td>
+					<td><p:outputLabel for="lastDayCalendar" value="Last day:" />
+						<p:calendar id="lastDayCalendar"
+							value="#{setAvailabilityBean.lastDay}" /></td>
+				</tr>
+				<tr>
+					<td><p:commandButton
+							action="#{setAvailabilityBean.setAvailability}" value="Aceptar"
+							style="width: 128px; margin-left: 180; " align="center" /> <p:commandButton
+							action="#{setAvailabilityBean.main}" value="Cerrar"
+							style="width: 128px; margin-left: 20; " align="center"></p:commandButton></td>
+				</tr>
+			</table>
+			<h:messages></h:messages>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

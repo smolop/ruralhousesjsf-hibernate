@@ -1,0 +1,2 @@
+RuralHousesJSF
+# ruralhousejsf-hibernate
