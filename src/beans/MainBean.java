@@ -2,6 +2,10 @@ package beans;
 
 public class MainBean {
 	
+	
+	public MainBean() {System.out.println("Creada instancia");}
+
+	
 	public String queryAvailability() {
 		return "query-availability";
 	}

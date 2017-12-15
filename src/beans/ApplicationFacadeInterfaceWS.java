@@ -1,8 +1,7 @@
 package beans;
 
-import java.util.Set;
+import java.util.Vector;
 import java.util.Date;
-import java.util.List;
 
 //import domain.Booking;
 import domain.Offer;
@@ -43,7 +42,7 @@ public interface ApplicationFacadeInterfaceWS  {
 	 * 
 	 * @return a Set of rural houses
 	 */
-	@WebMethod public List<RuralHouse> getAllRuralHouses();
+	@WebMethod public Vector<RuralHouse> getAllRuralHouses();
 	
 	/**
 	 * This method obtains the  offers of a ruralHouse in the provided dates 
@@ -54,7 +53,7 @@ public interface ApplicationFacadeInterfaceWS  {
 	 * @return the first offer that overlaps with those dates, or null if there is no overlapping offer
 	 */
 
-	@WebMethod public List<Offer> getOffers( RuralHouse rh, Date firstDay,  Date lastDay) ;
+	@WebMethod public Vector<Offer> getOffers( RuralHouse rh, Date firstDay,  Date lastDay) ;
 	
 	@WebMethod public void initializeBD();
 

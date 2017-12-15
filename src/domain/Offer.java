@@ -15,7 +15,7 @@ public class Offer {
 	
 	@Id
 	@GeneratedValue
-	private Integer offerNumber;
+	private Long offerNumber;
 	private Date firstDay; // Dates are stored as java.util.Date objects instead of java.sql.Date objects
 	private Date lastDay;  // because, they are not well stored in db4o as java.util.Date objects
 	private float price;   // This is coherent because objects of java.sql.Date are objects of java.util.Date 
@@ -53,7 +53,7 @@ public class Offer {
 	 * 
 	 * @return offer number
 	 */
-	public int getOfferNumber() {
+	public Long getOfferNumber() {
 		return this.offerNumber;
 	}
 
