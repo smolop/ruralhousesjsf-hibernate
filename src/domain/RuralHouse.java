@@ -1,8 +1,10 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,6 +25,7 @@ public class RuralHouse {
 	private Long houseNumber;
 	private String description;
 	private String city; 
+	@OneToMany
 	public Set<Offer> offers;
 
 	public RuralHouse() {
@@ -32,7 +35,7 @@ public class RuralHouse {
 	public RuralHouse(String description, String city) {
 		this.description = description;
 		this.city = city;
-		offers=new HashSet<Offer>();
+		offers = new HashSet<Offer>();
 	}
 
 	public Long getHouseNumber() {
@@ -114,9 +117,9 @@ public class RuralHouse {
 	 * @param lastDay, last day in a period range
 	 * @return a vector of offers(Offer class)  available  in this period
 	 */
-	public Set<Offer> getOffers( Date firstDay,  Date lastDay) {
+	public List<Offer> getOffers( Date firstDay,  Date lastDay) {
 		
-		Set<Offer> availableOffers=new HashSet<Offer>();
+		List<Offer> availableOffers=new ArrayList<Offer>();
 		Iterator<Offer> e=offers.iterator();
 		Offer offer;
 		while (e.hasNext()){

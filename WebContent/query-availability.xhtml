@@ -2,6 +2,7 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
@@ -11,64 +12,108 @@
 		<title>RuralHousesJSF-Hibernate</title>
 	</h:head>
 	<h:body>
-		<h3 align="center"><p:outputLabel>Query</p:outputLabel></h3>
-		<h:form>
-			<table align="center">
-				<tr>
-					<td><p:outputLabel>Rural house:</p:outputLabel></td>
-					<td><p:selectOneMenu
-							value="#{queryAvailabilityBean.ruralHouse}" converter="omnifaces.SelectItemsConverter">
-							<f:selectItems value="#{queryAvailabilityBean.ruralHouses}"></f:selectItems>
-						</p:selectOneMenu></td>
-				</tr>
-				<tr>
-					<td><p:outputLabel>First day:</p:outputLabel></td>
-					<td><p:outputLabel for="popup" value="" /> <p:calendar
-							id="popup" value="#{queryAvailabilityBean.firstDay}" /></td>
-				</tr>
-				<tr>
-					<td><p:outputLabel>Number of nights:</p:outputLabel></td>
-					<td><p:inputNumber value="#{queryAvailabilityBean.numberOfNights}"  decimalPlaces="0"/></td>
-				</tr>
-				<tr>
-					<td><p:dataTable id="offersDataTable" var="offer" value="#{queryAvailabilityBean.offers}">
-							<p:column headerText="Offer#">
-								<h:outputText value="#{offer.offerNumber}" />
-							</p:column>
+		<div align="center"
+			style="width: 50%; margin-left: 25%; margin-top: 10%">
+			<h3 align="center">
+				<p:outputLabel>Query Availability</p:outputLabel>
+			</h3>
+			<b:form>
+				<table align="center">
+					<tr>
+						<td><b:formGroup align="center">
+								<b:selectOneMenu value="#{query.ruralHouse}" label="Houses"
+									converter="omnifaces.SelectItemsConverter" col-sm="6">
+									<f:facet name="prepend">
+										<b:iconAwesome name="fa-home" look="primary" />
+									</f:facet>
+									<f:selectItems value="#{query.ruralHouses}" />
+								</b:selectOneMenu>
+							</b:formGroup></td>
+					</tr>
+					<tr>
+						<td><b:dateTimePicker value="#{query.firstDay}"
+								format="DD/MM/YYYY HH:mm" label="First Day:" col-sm="6" /></td>
+					</tr>
+					<tr>
+						<td><b:inputText id="nights" value="#{query.numberOfNights}"
+								mask="decimal" label="Number of Nights" col-sm="3">
+								<f:facet name="prepend">
+									<b:iconAwesome name="fa-moon-o" look="primary" />
+								</f:facet>
+							</b:inputText></td>
+					</tr>
+					<tr>
+						<td><b:dataTable id="offersDataTable" value="#{query.offers}"
+								var="offer">
+								<b:dataTableColumn>
+									<f:facet name="header">
+										<ul
+											style="margin-bottom: 0; list-style-type: none; padding-left: 0; width: 10">
+											<li>Offer Number</li>
+										</ul>
+									</f:facet>
+									<p align="center" style="margin: auto;">#{offer.offerNumber}</p>
 
-							<p:column headerText="Rural House">
-								<h:outputText value="#{offer.ruralHouse}" />
-							</p:column>
+								</b:dataTableColumn>
+								<b:dataTableColumn>
+									<f:facet name="header">
+										<ul
+											style="margin-bottom: 0; list-style-type: none; padding-left: 0">
+											<li>Rural House</li>
+										</ul>
+									</f:facet>
+									<p align="center" style="margin: auto;">#{offer.ruralHouse}</p>
+								</b:dataTableColumn>
+								<b:dataTableColumn>
+									<f:facet name="header">
+										<ul
+											style="margin-bottom: 0; list-style-type: none; padding-left: 0">
+											<li>First Day</li>
+											<li>Last Day</li>
+										</ul>
+									</f:facet>
+									<p align="center" style="margin: auto;">#{offer.firstDay}</p>
+									<br />
+									<br />
+									<p align="center" style="margin: auto;">#{offer.lastDay}</p>
+								</b:dataTableColumn>
+								<b:dataTableColumn>
+									<f:facet name="header">
+										<ul
+											style="margin-bottom: 0; list-style-type: none; padding-left: 0">
+											<li>Price</li>
+										</ul>
+									</f:facet>
+									<p align="center" style="margin: auto;">#{offer.price}</p>
+								</b:dataTableColumn>
+							</b:dataTable></td>
+					</tr>
+				</table>
 
-							<p:column headerText="First Day">
-								<h:outputText value="#{offer.firstDay}" >
-									<f:convertDateTime pattern="dd.MM.yyyy" />
-								</h:outputText>
-							</p:column>
+				<table align="center" style="margin: auto;">
+					<tr>
+						<td><b:panelGrid columns="2" style="margin: auto;">
+								<b:commandButton action="#{query.queryAvailability}"
+									value="Aceptar" icon-awesome="fa-check-circle-o" icon-size='1x'
+									look="success" style="width: 128px; height: 32px;"
+									align="center" update="offersDataTable messages growl" />
+								<b:commandButton action="#{query.main}" value="Cerrar"
+									icon-awesome="fa-minus-circle " icon-size='1x' look="alarm"
+									style="width: 128px; height: 32px;" />
+							</b:panelGrid></td>
+					</tr>
+				</table>
 
-							<p:column headerText="Last day">
-								<h:outputText value="#{offer.lastDay}" >
-									<f:convertDateTime pattern="dd-MM-yyyy" />
-								</h:outputText>
-							</p:column>
-							
-							<p:column headerText="Price">
-								<h:outputText value="#{offer.price}" />
-							</p:column>
-						</p:dataTable></td>
-				</tr>
-				<tr>
-					<td>
-						<p:commandButton action="#{queryAvailabilityBean.queryAvailability}" value="Aceptar"
-							style="width: 128px; margin-left: 180; " align="center" update="offersDataTable" />
-						<p:commandButton
-							action="#{queryAvailabilityBean.main}" value="Cerrar"
-							style="width: 128px; margin-left: 20; " align="center" />
-					</td>
-				</tr>
-			</table>
-			<h:messages></h:messages>
-		</h:form>
+				<b:messages id="messages" globalOnly="true" escape="false"
+					severity="error,fatal,info,success" />
+				<b:growl id="growl" globalOnly="true" placementFrom="top"
+					placement-align="center" show-detail="true" global-only="false"
+					show-summary="true" allow-dismiss="true"
+					animation-enter="animated bounceInDown"
+					animation-exit="animated flipOutX" delay="10000" escape="true" />
+
+			</b:form>
+		</div>
 	</h:body>
 </f:view>
 </html>

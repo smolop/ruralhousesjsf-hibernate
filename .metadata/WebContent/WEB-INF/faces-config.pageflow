@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15109973503850" configfile="/ruralhousesjsf-hibernate/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="main.xhtml" x="122" y="370" id="pf15110157085640" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15110157085641 pf15110157085642" inlinks="pf15110157085643 pf15110157085644" path="/main.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="query-availability.xhtml" x="338" y="279" id="pf15110157085645" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" outlinks="pf15110157085644" inlinks="pf15110157085641" path="/query-availability.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="set-availability.xhtml" x="345" y="456" id="pf15110157085646" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf15110157085643" inlinks="pf15110157085642" path="/set-availability.xhtml"/>
-  <links id="pf15110157085641" target="pf15110157085645" source="pf15110157085640"/>
-  <links id="pf15110157085642" target="pf15110157085646" source="pf15110157085640"/>
-  <links id="pf15110157085643" target="pf15110157085640" source="pf15110157085646"/>
-  <links id="pf15110157085644" target="pf15110157085640" source="pf15110157085645"/>
+  <nodes xsi:type="pageflow:PFPage" name="main.xhtml" x="122" y="370" id="pf15110157085640" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf15110157085641 pf15110157085642" inlinks="pf15110157085643 pf15110157085644" path="/main.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="query-availability.xhtml" x="338" y="279" id="pf15110157085645" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15110157085644" inlinks="pf15110157085641" path="/query-availability.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="set-availability.xhtml" x="345" y="456" id="pf15110157085646" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15110157085643" inlinks="pf15110157085642" path="/set-availability.xhtml"/>
+  <links id="pf15110157085641" target="pf15110157085645" source="pf15110157085640" outcome="query-availability" redirect="true"/>
+  <links id="pf15110157085642" target="pf15110157085646" source="pf15110157085640" outcome="set-availability" redirect="true"/>
+  <links id="pf15110157085643" target="pf15110157085640" source="pf15110157085646" outcome="main" redirect="true"/>
+  <links id="pf15110157085644" target="pf15110157085640" source="pf15110157085645" outcome="main" redirect="true"/>
 </pageflow:Pageflow>

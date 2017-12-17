@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <faces-config
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -11,12 +10,12 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>queryAvailabilityBean</managed-bean-name>
+		<managed-bean-name>query</managed-bean-name>
 		<managed-bean-class>beans.QueryAvailabilityBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>setAvailabilityBean</managed-bean-name>
+		<managed-bean-name>set</managed-bean-name>
 		<managed-bean-class>beans.SetAvailabilityBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
@@ -26,6 +25,7 @@
 		<navigation-case>
 			<from-outcome>query-availability</from-outcome>
 			<to-view-id>/query-availability.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -34,6 +34,7 @@
 		<navigation-case>
 			<from-outcome>set-availability</from-outcome>
 			<to-view-id>/set-availability.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -42,6 +43,7 @@
 		<navigation-case>
 			<from-outcome>main</from-outcome>
 			<to-view-id>/main.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -50,7 +52,7 @@
 		<navigation-case>
 			<from-outcome>main</from-outcome>
 			<to-view-id>/main.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-
 </faces-config>

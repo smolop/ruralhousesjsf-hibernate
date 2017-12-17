@@ -21,7 +21,7 @@ public class HibernateDataAccess {
 	public void initializeDB(){
 		try {
 			session = HibernateUtil.getSessionFactory().getCurrentSession();
-			session.getTransaction().begin();
+			session.beginTransaction();
 			RuralHouse rh1=new RuralHouse();
 			rh1.setDescription("Ezkioko etxea");
 			rh1.setCity("Ezkio");
@@ -62,6 +62,8 @@ public class HibernateDataAccess {
 		session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		System.out.println("TRACE 1 : After session created ");
+		System.out.printf("firstday=%s, lastDay=%s, rh=%d", String.valueOf(firstDay), String.valueOf(lastDay), rh.getHouseNumber());
+		//List<Offer> offersList = session.createQuery("FROM Offer WHERE firstDay='"+firstDay+"' AND lastDAy='"+lastDay+"'").list();
 		List<Offer> offersList = session.createQuery("FROM Offer").list();
 		System.out.println(offersList);
 		Set<Offer> offers = new HashSet<Offer>(offersList);
@@ -90,12 +92,16 @@ public class HibernateDataAccess {
 			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			Offer of = new Offer();
+			of.setRuralHouse(ruralHouse);
+			if (of.getRuralHouse() == null)
+				return null;
 			of.setFirstDay(firstDay);
 			of.setLastDay(lastDay);
 			of.setPrice(price);
-			of.setRuralHouse(ruralHouse);
+			of.setHousenumber(ruralHouse.getHouseNumber());
 			session.save(of);
-			session.getTransaction().commit();
+			session.beginTransaction().commit();
+			System.out.println("RuralHouse created: "+ruralHouse.toString());
 			return of;
 		}catch (Exception e) {
 			System.out.println("Offer not created: "+e.toString());
@@ -109,7 +115,8 @@ public class HibernateDataAccess {
 			session.beginTransaction();
 			RuralHouse rhObj = (RuralHouse) session.get(RuralHouse.class, rh.getHouseNumber());
 			System.out.println("RuralHouse ov = "+rhObj);
-			session.getTransaction().commit();
+			session.beginTransaction().commit();
+			System.out.println("OverLappinfOffer ? = "+(rhObj.overlapsWith(firstDay,lastDay)));
 			if (rhObj.overlapsWith(firstDay,lastDay)!=null) return true;
 		} catch (Exception e){
 			System.out.println("Error: "+e.toString());

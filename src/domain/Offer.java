@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlIDREF;
@@ -20,7 +22,9 @@ public class Offer {
 	private Date lastDay;  // because, they are not well stored in db4o as java.util.Date objects
 	private float price;   // This is coherent because objects of java.sql.Date are objects of java.util.Date 
 	@XmlIDREF
+    @OneToOne
 	private RuralHouse ruralHouse;
+	private Long houseNumber;
 
 	public Offer(){}
 	public Offer(Date firstDay, Date lastDay, float price, RuralHouse ruralHouse){
@@ -28,6 +32,7 @@ public class Offer {
 		  this.lastDay=lastDay;
 		  this.price=price;
 		  this.ruralHouse=ruralHouse;
+		  this.houseNumber=ruralHouse.getHouseNumber();
 	}
 	/**
 	 * Get the house number of the offer
@@ -113,6 +118,14 @@ public class Offer {
 	 */
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	
+	public Long getHouseNumber() {
+		return this.houseNumber;
+	}
+	
+	public void setHousenumber(Long houseNumber) {
+		this.houseNumber = houseNumber;
 	}
 	
 	public String toString(){

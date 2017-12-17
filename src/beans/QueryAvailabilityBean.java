@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.faces.application.FacesMessage;
-
-import org.primefaces.context.RequestContext;
+import javax.faces.context.FacesContext;
 
 import domain.Offer;
 import domain.RuralHouse;
@@ -65,8 +63,11 @@ public class QueryAvailabilityBean {
 	}
 	
 	private void showNotification(String title, String content) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, title, content);
-		RequestContext.getCurrentInstance().showMessageInDialog(message);
+		FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage(FacesMessage.SEVERITY_INFO, title, content));
+	}
+	
+	private void showNotificationError(String title, String content) {
+		FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage(FacesMessage.SEVERITY_ERROR, title, content));
 	}
 
 	public String main() {
@@ -78,7 +79,7 @@ public class QueryAvailabilityBean {
 		calendar.setTime(firstDay);
 		calendar.add(Calendar.DATE, numberOfNights);
 		if (ruralHouse == null) {
-			showNotification("Error", "rh null");
+			showNotificationError("Error", "rh null");
 			return;
 		}
 		this.offers = Facade.getInstance().getOffers(ruralHouse, firstDay, calendar.getTime());

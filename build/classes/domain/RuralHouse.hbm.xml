@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 13, 2017 4:41:19 PM by Hibernate Tools 3.5.0.Final -->
+<!-- Generated Dec 17, 2017 9:30:12 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="domain.RuralHouse" table="RURALHOUSE">
         <id name="houseNumber" type="java.lang.Long">
@@ -14,7 +14,7 @@
         <property name="city" type="java.lang.String">
             <column name="CITY" />
         </property>
-        <set name="offers" table="OFFER" cascade="delete, save-update" inverse="true" lazy="false" fetch="join" access="field">
+        <set name="offers" table="OFFER" inverse="true" lazy="true" fetch="join" access="field">
             <key>
                 <column name="HOUSENUMBER" />
             </key>

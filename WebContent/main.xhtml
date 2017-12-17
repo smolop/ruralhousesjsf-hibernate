@@ -2,22 +2,33 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <f:view>
 	<h:head>
-<title>RuralHousesJSF-Hibernate</title>
+		<title>RuralHousesJSF-Hibernate</title>
 	</h:head>
 	<h:body>
-		<h3 align="center"><p:outputLabel>Select option</p:outputLabel></h3>
-		<div align="center">
-			<h:form>
-				<p:commandButton align="center" value="Query availability"
-					action="query-availability"/>
-				<p:commandButton align="center" value="Set availability"
-					action="set-availability"/>
-			</h:form>
+		<h3 align="center" style="margin-top: 5%">
+			<p:outputLabel>Select option</p:outputLabel>
+		</h3>
+		<div align="center"
+			style="width: 50%; margin-left: 25%; margin-top: 10%">
+			<b:form>
+				<b:panelGrid columns="3">
+					<b:commandButton align="center" size="1.5x"
+						value="Booking" action="query-availability"
+						icon="bookmark" icon-size="2x" look="info" />
+					<b:commandButton align="center" size="1.5x"
+						value="Query availability" action="query-availability"
+						icon-awesome="fa-search" icon-size="2x" look="primary" />
+					<b:commandButton align="center" size="1.5x"
+						value="Set availability" action="set-availability"
+						icon="plus-sign" icon-size='2x' look="success" />
+				</b:panelGrid>
+			</b:form>
 		</div>
 	</h:body>
 </f:view>

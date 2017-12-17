@@ -2,6 +2,7 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
@@ -10,40 +11,65 @@
 		<title>RuralHousesJSF-Hibernate</title>
 	</h:head>
 	<h:body>
-		<h3 align="center">
-			<p:outputLabel>Set</p:outputLabel>
-		</h3>
-		<h:form>
-			<table align="center">
-				<tr>
-					<td><p:outputLabel>List of House:</p:outputLabel> 
-						<p:selectOneMenu
-							value="#{setAvailabilityBean.ruralHouse}"
-							converter="omnifaces.SelectItemsConverter">
-							<f:selectItems value="#{setAvailabilityBean.ruralHouses}"></f:selectItems>
-						</p:selectOneMenu></td>
-					<td><p:outputLabel>Price:</p:outputLabel> <p:inputNumber
-							id="price" value="#{setAvailabilityBean.price}">
-						</p:inputNumber></td>
-				</tr>
-				<tr>
-					<td><p:outputLabel for="firstDayCalendar" value="First day:" />
-						<p:calendar id="firstDayCalendar"
-							value="#{setAvailabilityBean.firstDay}" /></td>
-					<td><p:outputLabel for="lastDayCalendar" value="Last day:" />
-						<p:calendar id="lastDayCalendar"
-							value="#{setAvailabilityBean.lastDay}" /></td>
-				</tr>
-				<tr>
-					<td><p:commandButton
-							action="#{setAvailabilityBean.setAvailability}" value="Aceptar"
-							style="width: 128px; margin-left: 180; " align="center" /> <p:commandButton
-							action="#{setAvailabilityBean.main}" value="Cerrar"
-							style="width: 128px; margin-left: 20; " align="center"></p:commandButton></td>
-				</tr>
-			</table>
-			<h:messages></h:messages>
-		</h:form>
+		<div align="center"
+			style="width: 50%; margin-left: 25%; margin-top: 10%">
+			<h3 align="center">
+				<p:outputLabel>Set Availability</p:outputLabel>
+			</h3>
+
+			<b:form>
+				<table align="center" style="margin: auto;">
+
+					<tr>
+						<td><b:formGroup>
+								<b:selectOneMenu value="#{set.ruralHouse}" label="Houses"
+									converter="omnifaces.SelectItemsConverter">
+									<f:facet name="prepend">
+										<b:iconAwesome name="fa-home" look="primary" />
+									</f:facet>
+									<f:selectItems value="#{set.ruralHouses}" />
+								</b:selectOneMenu>
+							</b:formGroup></td>
+
+						<td><b:inputText id="price" value="#{set.price}"
+								mask="decimal" label="price">
+								<f:facet name="prepend">
+									<h:outputText value="€" />
+								</f:facet>
+							</b:inputText></td>
+					</tr>
+
+					<tr>
+						<td><b:dateTimePicker value="#{set.firstDay}"
+								format="DD/MM/YYYY HH:mm" label="First Day:" /></td>
+						<td><b:dateTimePicker value="#{set.lastDay}"
+								format="DD/MM/YYYY HH:mm" label="Last Day:" /></td>
+					</tr>
+
+				</table>
+
+
+				<table align="center" style="margin: auto;">
+					<tr>
+						<td><b:panelGrid columns="2" style="margin: auto;">
+								<b:commandButton action="#{set.setAvailability}" value="Aceptar"
+									icon-awesome="fa-check-circle-o" icon-size='1x' look="success"
+									style="width: 128px; height: 32px;" update="messages growl" />
+								<b:commandButton action="#{set.main}" value="Cerrar"
+									icon-awesome="fa-minus-circle " icon-size='1x' look="alarm"
+									style="width: 128px; height: 32px; " />
+							</b:panelGrid></td>
+					</tr>
+				</table>
+				<b:messages id="messages" globalOnly="true" escape="false"
+					severity="error,fatal,info,success" />
+				<b:growl id="growl" globalOnly="true" placementFrom="top"
+					placement-align="center" show-detail="true" global-only="false"
+					show-summary="true" allow-dismiss="true"
+					animation-enter="animated bounceInDown"
+					animation-exit="animated flipOutX" delay="10000" escape="true" />
+			</b:form>
+		</div>
 	</h:body>
 </f:view>
 </html>
