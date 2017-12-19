@@ -1,27 +1,34 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 17, 2017 9:30:12 PM by Hibernate Tools 3.5.0.Final -->
+<!-- Generated Dec 18, 2017 9:49:55 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="domain.Offer" table="OFFER">
         <id name="offerNumber" type="java.lang.Long" access="field">
-            <column name="OFFERNUMBER" />
-            <generator class="increment" />
-        </id>
-        <property name="firstDay" type="java.util.Date">
-            <column name="FIRSTDAY" />
-        </property>
-        <property name="lastDay" type="java.util.Date">
-            <column name="LASTDAY" />
-        </property>
-        <property name="price" type="float">
-            <column name="PRICE" />
-        </property>
-            <many-to-one name="ruralHouse" class="domain.RuralHouse" lazy="false" fetch="join">
-            <column name="RURALHOUSE" not-null="true"/>
-</many-to-one>
-        <property name="houseNumber" type="java.lang.Long" access="field">
-            <column name="HOUSENUMBER" />
-        </property>
+			<column name="OFFERNUMBER" />
+			<generator class="increment" />
+		</id>
+		<property name="firstDay" type="java.util.Date">
+			<column name="FIRSTDAY" />
+		</property>
+		<property name="lastDay" type="java.util.Date">
+			<column name="LASTDAY" />
+		</property>
+		<property name="price" type="float">
+			<column name="PRICE" />
+		</property>
+		<many-to-one name="ruralHouse" class="domain.RuralHouse"
+			lazy="false" fetch="join">
+			<column name="RURALHOUSE" not-null="true" />
+		</many-to-one>
+		<property name="houseNumber" type="java.lang.Long" access="field">
+			<column name="HOUSENUMBER" />
+		</property>
+		<property name="booked" type="org.hibernate.type.NumericBooleanType">
+			<column name="BOOKED" default="false" />
+		</property>
+        <many-to-one name="bookedBy" class="domain.User" fetch="join">
+            <column name="BOOKEDBY" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

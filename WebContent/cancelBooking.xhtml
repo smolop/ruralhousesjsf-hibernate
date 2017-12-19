@@ -15,47 +15,50 @@
 		<div align="center"
 			style="width: 50%; margin-left: 25%; margin-top: 10%">
 			<h3 align="center">
-				<p:outputLabel>Query Availability</p:outputLabel>
+				<p:outputLabel>Booking</p:outputLabel>
 			</h3>
 			<b:form>
-				<table align="center">
+
+				<table align="center" style="margin: auto;">
 					<tr>
-						<td><b:formGroup align="center">
-								<b:selectOneMenu value="#{query.ruralHouse}" label="Houses"
-									converter="omnifaces.SelectItemsConverter" col-sm="7">
-									<f:facet name="prepend">
-										<b:iconAwesome name="fa-home" look="primary" />
-									</f:facet>
-									<f:selectItem itemLabel="Select rural houses" />
-									<f:selectItems value="#{query.ruralHouses}" />
-								</b:selectOneMenu>
-							</b:formGroup></td>
-					</tr>
-					<tr>
-						<td><b:dateTimePicker value="#{query.firstDay}"
-								format="DD/MM/YYYY HH:mm" label="First Day:" col-sm="6" /></td>
-					</tr>
-					<tr>
-						<td><b:inputText id="nights" value="#{query.numberOfNights}"
-								mask="decimal" label="Number of Nights" col-sm="5">
+						<td><b:inputText placeholder="Username"
+								value="#{cancelBooking.username}" label="Username*" update="bookedOffersDataTable">
 								<f:facet name="prepend">
-									<b:iconAwesome name="fa-moon-o" look="primary" />
+									<b:icon name="user" />
 								</f:facet>
 							</b:inputText></td>
-							
 					</tr>
 					<tr>
-						<td><b:panelGrid columns="1" style="margin: auto;">
-								<b:commandButton action="#{query.nights}"
-									value="See Number Of Nights" icon-awesome="fa-moon-o" icon-size='1x'
-									look="primary" style="width: 256px; height: 32px;"
-									align="center" update="messages growl" />
-							</b:panelGrid>	<br></br></td>
+						<td><b:inputText id="offerNumber"
+								value="#{cancelBooking.offerNumber}" mask="numeric"
+								label="Offer Number">
+								<f:facet name="prepend">
+									<h:outputText value="#" />
+								</f:facet>
+							</b:inputText></td>
 					</tr>
-				
+				</table>
+
+				<br></br>
+
+				<table align="center" style="margin: auto;">
 					<tr>
-						<td><b:dataTable id="offersDataTable" value="#{query.offers}"
-								var="offer">
+						<td><b:panelGrid columns="2" style="margin: auto;">
+								<b:commandButton action="#{cancelBooking.cancelBooking}" value="Cancel Booking"
+									icon-awesome="fa-bookmark-o" icon-size='1x' look="primary"
+									style="width: 140px; height: 32px;" align="center"
+									update="bookedOffersDataTable messages growl" />
+							</b:panelGrid></td>
+					</tr>
+				</table>
+
+				<br></br>
+
+				<table>
+					<tr>
+						<td><b:dataTable id="bookedOffersDataTable"
+								value="#{cancelBooking.userBookedOffers}" var="offer" page-length="2"
+								page-length-menu="1,2,3,5,10">
 								<b:dataTableColumn>
 									<f:facet name="header">
 										<ul
@@ -64,7 +67,6 @@
 										</ul>
 									</f:facet>
 									<p align="center" style="margin: auto;">#{offer.offerNumber}</p>
-
 								</b:dataTableColumn>
 								<b:dataTableColumn>
 									<f:facet name="header">
@@ -101,17 +103,15 @@
 					</tr>
 				</table>
 
+				<br></br>
+
 				<table align="center" style="margin: auto;">
 					<tr>
 						<td><b:panelGrid columns="2" style="margin: auto;">
-								<b:commandButton action="#{query.queryAvailability}"
-									value="Aceptar" icon-awesome="fa-check-circle-o" icon-size='1x'
-									look="success" style="width: 128px; height: 32px;"
-									align="center" update="offersDataTable messages growl" />
-								<b:commandButton action="#{query.main}" value="Cerrar"
+								<b:commandButton action="#{booking.main}" value="Cerrar"
 									icon-awesome="fa-minus-circle " icon-size='1x' look="alarm"
 									style="width: 128px; height: 32px;"
-									update="offersDataTable messages growl" />
+									update="bookedOffersDataTable messages growl" />
 							</b:panelGrid></td>
 					</tr>
 				</table>

@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15109973503850" configfile="/ruralhousesjsf-hibernate/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="main.xhtml" x="122" y="370" id="pf15110157085640" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf15110157085641 pf15110157085642" inlinks="pf15110157085643 pf15110157085644" path="/main.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="query-availability.xhtml" x="338" y="279" id="pf15110157085645" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15110157085644" inlinks="pf15110157085641" path="/query-availability.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="set-availability.xhtml" x="345" y="456" id="pf15110157085646" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15110157085643" inlinks="pf15110157085642" path="/set-availability.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="main.xhtml" x="492" y="228" id="pf15110157085640" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" outlinks="pf15110157085641 pf15110157085642 pf15136055496910 pf15136269693000 pf15136698566250" inlinks="pf15110157085643 pf15110157085644 pf15136055496911 pf15136269693001 pf15136698566251 pf15136758234364" path="/main.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="query-availability.xhtml" x="673" y="293" id="pf15110157085645" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15110157085644 pf15136758234363" inlinks="pf15110157085641" path="/query-availability.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="set-availability.xhtml" x="600" y="389" id="pf15110157085646" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15110157085643" inlinks="pf15110157085642" path="/set-availability.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="booking.xhtml" x="696" y="156" id="pf15136055496922" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15136055496911" inlinks="pf15136055496910" path="/booking.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="log.xhtml" x="252" y="228" id="pf15136269693002" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf15136269693001" inlinks="pf15136269693000" path="/log.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cancelBooking.xhtml" x="636" y="72" id="pf15136698566252" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf15136698566251" inlinks="pf15136698566250" path="/cancelBooking.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="nights.xhtml" x="883" y="261" id="pf15136758234365" outlinks="pf15136758234364" inlinks="pf15136758234363" path="/nights.xhtml"/>
   <links id="pf15110157085641" target="pf15110157085645" source="pf15110157085640" outcome="query-availability" redirect="true"/>
   <links id="pf15110157085642" target="pf15110157085646" source="pf15110157085640" outcome="set-availability" redirect="true"/>
   <links id="pf15110157085643" target="pf15110157085640" source="pf15110157085646" outcome="main" redirect="true"/>
   <links id="pf15110157085644" target="pf15110157085640" source="pf15110157085645" outcome="main" redirect="true"/>
+  <links id="pf15136055496910" target="pf15136055496922" source="pf15110157085640" outcome="booking" redirect="true" fromaction="#{main.username}"/>
+  <links id="pf15136055496911" target="pf15110157085640" source="pf15136055496922" outcome="main" redirect="true"/>
+  <links id="pf15136269693001" target="pf15110157085640" source="pf15136269693002" outcome="main" fromaction="#{logUp.username}"/>
+  <links id="pf15136269693000" target="pf15136269693002" source="pf15110157085640" outcome="log"/>
+  <links id="pf15136698566250" target="pf15136698566252" source="pf15110157085640" outcome="cancel-booking" redirect="true"/>
+  <links id="pf15136698566251" target="pf15110157085640" source="pf15136698566252" outcome="main" redirect="true" fromaction="#{main.username}"/>
+  <links id="pf15136758234363" target="pf15136758234365" source="pf15110157085645" outcome="nights" redirect="true"/>
+  <links id="pf15136758234364" target="pf15110157085640" source="pf15136758234365" outcome="main" redirect="true"/>
 </pageflow:Pageflow>

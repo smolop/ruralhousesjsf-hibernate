@@ -19,6 +19,21 @@
 		<managed-bean-class>beans.SetAvailabilityBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>booking</managed-bean-name>
+		<managed-bean-class>beans.BookingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>logUp</managed-bean-name>
+		<managed-bean-class>beans.RegisterBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>cancelBooking</managed-bean-name>
+		<managed-bean-class>beans.CancelBookingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>main.xhtml</display-name>
 		<from-view-id>/main.xhtml</from-view-id>
@@ -49,6 +64,79 @@
 	<navigation-rule>
 		<display-name>query-availability.xhtml</display-name>
 		<from-view-id>/query-availability.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>main</from-outcome>
+			<to-view-id>/main.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>main.xhtml</display-name>
+		<from-view-id>/main.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{main.username}</from-action>
+			<from-outcome>booking</from-outcome>
+			<to-view-id>/booking.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>booking.xhtml</display-name>
+		<from-view-id>/booking.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>main</from-outcome>
+			<to-view-id>/main.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>log.xhtml</display-name>
+		<from-view-id>/log.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{logUp.username}</from-action>
+			<from-outcome>main</from-outcome>
+			<to-view-id>/main.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>main.xhtml</display-name>
+		<from-view-id>/main.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>log</from-outcome>
+			<to-view-id>/log.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>main.xhtml</display-name>
+		<from-view-id>/main.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>cancel-booking</from-outcome>
+			<to-view-id>/cancelBooking.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>cancelBooking.xhtml</display-name>
+		<from-view-id>/cancelBooking.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{main.username}</from-action>
+			<from-outcome>main</from-outcome>
+			<to-view-id>/main.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>query-availability.xhtml</display-name>
+		<from-view-id>/query-availability.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>nights</from-outcome>
+			<to-view-id>/nights.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>nights.xhtml</display-name>
+		<from-view-id>/nights.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>main</from-outcome>
 			<to-view-id>/main.xhtml</to-view-id>

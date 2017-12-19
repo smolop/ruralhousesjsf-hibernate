@@ -57,6 +57,11 @@ public class QueryAvailabilityBean {
 	public int getNumberOfNights() {
 		return numberOfNights;
 	}
+	
+	public String nights() {
+		showNotification("Notify", "Number of nights : "+String.valueOf(numberOfNights));
+		return "nights";
+	}
 
 	public void setNumberOfNights(int numberOfNights) {
 		this.numberOfNights = numberOfNights;
@@ -76,14 +81,20 @@ public class QueryAvailabilityBean {
 	
 	public void queryAvailability() {
 		Calendar calendar = Calendar.getInstance();
+		if(firstDay.equals(null))
+		showNotificationError("Error", "First day is null");
 		calendar.setTime(firstDay);
+		if(!(numberOfNights>0)) {
+		showNotificationError("Error", "Number of night must be upper to 0");
+		return;
+		}
 		calendar.add(Calendar.DATE, numberOfNights);
 		if (ruralHouse == null) {
 			showNotificationError("Error", "rh null");
 			return;
 		}
 		this.offers = Facade.getInstance().getOffers(ruralHouse, firstDay, calendar.getTime());
-		showNotification("Traza", "numero de ofertas: " + offers.size());
+		showNotification("Notify", "numero de ofertas: " + offers.size());
 	}
 
 }

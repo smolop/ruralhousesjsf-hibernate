@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>RuralHousesJSF-Hibernate</title>
+	</h:head>
+	<h:body>
+		<h3 align="center" style="margin-top: 5%">
+			<p:outputLabel>Number of nights</p:outputLabel>
+		</h3>
+		<div align="center"
+			style="width: 50%; margin-left: 25%; margin-top: 10%">
+			<p>Rural House : </p>
+			<p:outputLabel value="#{query.ruralHouse}"></p:outputLabel>
+			<br></br>
+			<p>Number of Nights selected : </p>
+			<p:outputLabel value="#{query.numberOfNights}"></p:outputLabel>
+			<b:form>
+				<b:panelGrid columns="2">
+					<b:commandButton align="center" size="1.5x"
+						value="Query Availability" action="query-availability"
+						icon-awesome="fa-search" icon-size="2x" look="primary" style="width: 168px; height: 64px;" />
+					<b:commandButton align="center" size="1.5x"
+						value="Home" action="main"
+						icon-awesome="fa-home" icon-size="2x" look="primary" style="width: 128px; height: 64px;"/>
+				</b:panelGrid>
+			</b:form>
+		</div>
+	</h:body>
+</f:view>
+</html>

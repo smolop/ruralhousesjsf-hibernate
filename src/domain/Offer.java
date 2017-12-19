@@ -5,16 +5,18 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Offer {
 	
+	@XmlID
 	@Id
 	@GeneratedValue
 	private Long offerNumber;
@@ -25,6 +27,10 @@ public class Offer {
     @OneToOne
 	private RuralHouse ruralHouse;
 	private Long houseNumber;
+	
+	private boolean booked = false;
+	@XmlIDREF
+	private User bookedBy;
 
 	public Offer(){}
 	public Offer(Date firstDay, Date lastDay, float price, RuralHouse ruralHouse){
@@ -130,5 +136,17 @@ public class Offer {
 	
 	public String toString(){
 		return offerNumber+";"+firstDay.toString()+";"+lastDay.toString()+";"+price;
+	}
+	public boolean isBooked() {
+		return booked;
+	}
+	public void setBooked(boolean booked) {
+		this.booked = booked;
+	}
+	public User getBookedBy() {
+		return bookedBy;
+	}
+	public void setBookedBy(User bookedBy) {
+		this.bookedBy = bookedBy;
 	}
 }

@@ -1,11 +1,14 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
 import domain.Offer;
 import domain.RuralHouse;
+import domain.User;
 import exceptions.BadDates;
 import exceptions.OverlappingOfferExists;
 import services.repository.HibernateDataAccess;;
@@ -37,6 +40,12 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		return rhs;
 	}
 
+	public Vector<Offer> getOffers() {
+		HibernateDataAccess hdbMng = new HibernateDataAccess();
+		Set<Offer> offers = hdbMng.getOffers();
+		return new Vector<Offer>(offers);
+	}
+	
 	@Override
 	public Vector<Offer> getOffers(RuralHouse rh, Date firstDay,  Date lastDay) {
 		System.out.printf(">> FacadeImplementationWS: offers  FirstDay: %s, LastDay: %s, RuralHouse: %s ", firstDay.toString(), lastDay.toString(), rh.toString());
@@ -50,11 +59,58 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		return offrs;
 	}
 
+	public Offer getOffer(Long offerNumber) {
+		HibernateDataAccess hdbMng = new HibernateDataAccess();
+		return hdbMng.getOffer(offerNumber);
+	}
+	
+	public void bookOffer(Offer offer, String username) {
+		HibernateDataAccess hdbMng = new HibernateDataAccess();
+		hdbMng.bookOffer(offer, username);
+	}
+
+
 	@Override
 	public void initializeBD() {
 		HibernateDataAccess hdbMng = new HibernateDataAccess();
 		hdbMng.initializeDB();
-		hdbMng.close();
 	}
+
+	public User createUser(String username, String password) {
+		HibernateDataAccess hdbMng = new HibernateDataAccess();
+		if(hdbMng.userExists(username))
+			return null;
+		User u = hdbMng.createUser(username, password);
+		return u;
+	}
+
+	public boolean isValidUser(String username, String password) {
+		HibernateDataAccess hdbMng = new HibernateDataAccess();
+		if(!hdbMng.userExists(username))
+			return false;
+		return hdbMng.isValidUser(username, password);
+	}
+
+	public boolean userExists(String username) {
+		HibernateDataAccess hdbMng = new HibernateDataAccess();
+		return hdbMng.userExists(username);
+	}
+
+	public boolean offerExists(Long offerNumber) {
+		HibernateDataAccess hdbMng = new HibernateDataAccess();
+		return hdbMng.offerExists(offerNumber);
+	}
+
+	public List<Offer> getUserBookedOffers(String username) {
+		HibernateDataAccess hdbMng = new HibernateDataAccess();
+		Set<Offer> offers =  hdbMng.getUserBookedOffers(username);
+		return new ArrayList<Offer>(offers);
+	}
+
+	public boolean cancelBookingOffer(Offer offer, String username) {
+		HibernateDataAccess hdbMng = new HibernateDataAccess();
+		return hdbMng.cancelBookingOffer(offer, username);
+	}
+
 
 }

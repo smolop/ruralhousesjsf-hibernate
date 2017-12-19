@@ -16,5 +16,6 @@
   <property name="hibernate.format_sql">true</property>
   <mapping resource="domain/RuralHouse.hbm.xml"/>
   <mapping resource="domain/Offer.hbm.xml"/>
+  <mapping class="domain.User"/>
  </session-factory>
 </hibernate-configuration>

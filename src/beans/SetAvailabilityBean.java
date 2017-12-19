@@ -7,14 +7,10 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.context.RequestContext;
-
 import domain.Offer;
 import domain.RuralHouse;
 import exceptions.BadDates;
 import exceptions.OverlappingOfferExists;
-import net.bootsfaces.component.ajax.BootsFacesAJAXEvent;
-
 public class SetAvailabilityBean {
 	
 	private List<RuralHouse> ruralHouses;
@@ -60,6 +56,10 @@ public class SetAvailabilityBean {
 	}
 
 	public void setAvailability() {
+		if(!Facade.getUserLogged().equals("Admin")) {
+			showNotificationError("Error", "You don't have permission");
+			return;
+		}
 		if (ruralHouse == null) {
 			showNotificationError("Error", "Rural house is null");
 			return;

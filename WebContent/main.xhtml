@@ -17,16 +17,19 @@
 		<div align="center"
 			style="width: 50%; margin-left: 25%; margin-top: 10%">
 			<b:form>
-				<b:panelGrid columns="3">
+				<b:panelGrid columns="4">
 					<b:commandButton align="center" size="1.5x"
-						value="Booking" action="query-availability"
-						icon="bookmark" icon-size="2x" look="info" />
+						value="Cancel Booking" action="cancel-booking"
+						icon-awesome="fa-bookmark-o" icon-size="2x" look="primary" style="width: 145px; height: 64px;" />
+					<b:commandButton align="center" size="1.5x"
+						value="Booking" action="booking"
+						icon="bookmark" icon-size="2x" look="info" style="width: 128px; height: 64px;" />
 					<b:commandButton align="center" size="1.5x"
 						value="Query availability" action="query-availability"
-						icon-awesome="fa-search" icon-size="2x" look="primary" />
+						icon-awesome="fa-search" icon-size="2x" look="primary" style="width: 160px; height: 64px;"/>
 					<b:commandButton align="center" size="1.5x"
 						value="Set availability" action="set-availability"
-						icon="plus-sign" icon-size='2x' look="success" />
+						icon="plus-sign" icon-size='2x' look="success" style="width: 160px; height: 64px;"/>
 				</b:panelGrid>
 			</b:form>
 		</div>
